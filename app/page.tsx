@@ -79,16 +79,7 @@ export default function Home() {
  useEffect(()=> { if(!message)return;const t=setTimeout(()=>setMessage(''),4500);return()=>clearTimeout(t); },[message]);
 
  function updateProfile(patch: Partial<Profile>) {
-  setProfile(p=> {
-   const next={...p,...patch};
-   if(patch.xy) {
-    if(next.xy==='X'&&Number(next.number)>3)next.number='2';
-    if(next.xy==='Y'&&Number(next.number)<4)next.number='5';
-    if(next.xy==='X'&&!['C','D'].includes(next.letter))next.letter='C';
-    if(next.xy==='Y'&&!['A','B'].includes(next.letter))next.letter='A';
-   }
-   return next;
-  });
+  setProfile(p=>({...p,...patch}));
  }
  function generate(e: React.FormEvent) {
   e.preventDefault();setActiveProfile({...profile});setGenerated(true);
@@ -114,7 +105,7 @@ export default function Home() {
  <section className="intro"><div><h1>Stundenplan</h1><p className="intro-copy">1. Semester · BA Design</p></div></section>
  <form className="configurator" onSubmit={generate}>
   <div className="config-section program-section"><p className="step"><span>01</span> Studienrichtung</p><div className="program-options" role="group" aria-label="Studienrichtung auswählen">{programs.map(p=><button type="button" key={p.id} className={profile.program===p.id?'selected':''} aria-pressed={profile.program===p.id} onClick={()=>updateProfile({program:p.id})}><b>{p.id}</b><span>{p.label}</span>{profile.program===p.id&&<Check size={16}/>}</button>)}</div></div>
-  <div className="config-section groups-section"><p className="step"><span>02</span> Gruppen</p><div className="group-fields"><Selection label="Teilgruppe" value={profile.xy} onChange={xy=>updateProfile({xy})}>{['X','Y'].map(v=><option key={v}>{v}</option>)}</Selection><Selection label="Zahlengruppe" value={profile.number} onChange={number=>updateProfile({number})}>{(profile.xy==='X'?['1','2','3']:['4','5','6']).map(v=><option key={v}>{v}</option>)}</Selection><Selection label="Buchstabengruppe" value={profile.letter} onChange={letter=>updateProfile({letter})}>{(profile.xy==='X'?['C','D']:['A','B']).map(v=><option key={v}>{v}</option>)}</Selection></div><p className="field-hint">X: 1–3 und C/D · Y: 4–6 und A/B</p><button type="submit" className="primary generate-button"><CalendarDays size={18}/>{generated?'Stundenplan aktualisieren':'Stundenplan erstellen'}</button></div>
+  <div className="config-section groups-section"><p className="step"><span>02</span> Gruppen</p><div className="group-fields"><Selection label="Teilgruppe" value={profile.xy} onChange={xy=>updateProfile({xy})}>{['X','Y'].map(v=><option key={v}>{v}</option>)}</Selection><Selection label="Zahlengruppe" value={profile.number} onChange={number=>updateProfile({number})}>{['1','2','3','4','5','6'].map(v=><option key={v}>{v}</option>)}</Selection><Selection label="Buchstabengruppe" value={profile.letter} onChange={letter=>updateProfile({letter})}>{['A','B','C','D'].map(v=><option key={v}>{v}</option>)}</Selection></div><p className="field-hint">Zuordnung laut PDF: X = 1–3 und C/D · Y = 4–6 und A/B. Alle Gruppen sind einzeln auswählbar.</p><button type="submit" className="primary generate-button"><CalendarDays size={18}/>{generated?'Stundenplan aktualisieren':'Stundenplan erstellen'}</button></div>
  </form>
  <div className="source-line"><span><span className="source-dot"/>Planungsstand 18.09.2026 · Entwurf</span><a href="/seminarplan.pdf" target="_blank" rel="noreferrer">Originalplan ansehen</a></div>
  {!generated?<p className="initial-help">Studienrichtung und Gruppen auswählen, dann den Stundenplan erstellen.</p>:<section className="plan-section" ref={planRef}>
