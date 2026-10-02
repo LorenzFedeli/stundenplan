@@ -1,4 +1,4 @@
-export type Program = 'ID' | 'FD' | 'KD' | 'I+D';
+export type Program = 'ID' | 'FD' | 'KD';
 export type Category = 'essentials' | 'skills' | 'projects' | 'theory' | 'practice';
 export type Profile = { semester: number; program: Program; xy: string; number: string; letter: string };
 export type Course = {

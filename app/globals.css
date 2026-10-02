@@ -4,3 +4,88 @@
 @media(max-width:800px){.site-header{height:80px;padding:0 5%}.brand{font-size:11px;gap:14px}.brand-mark{font-size:38px}.header-right .edition{display:none}.season{font-size:11px}.season b{display:block;text-align:right;margin-top:4px}main{padding:0 5%}.intro{padding:36px 0 28px}.intro h1{font-size:52px}.intro-copy{font-size:14px}.palette{grid-template-columns:repeat(2,20px);gap:3px}.palette i{height:20px}.configurator{grid-template-columns:1fr 1.4fr}.config-section{padding:22px}.groups-section{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.3fr;gap:0 28px;border-top:1px solid var(--line);border-left:0!important}.groups-section .step{grid-column:1/-1;margin-bottom:18px}.groups-section .group-fields{grid-column:1;grid-row:2}.groups-section .field-hint{grid-column:1;grid-row:3}.generate-button{grid-column:2;grid-row:2/4;align-self:center;margin-top:0;font-size:14px}.no-groups{min-height:0;margin-bottom:0}.semester-options{margin-top:5px}.plan-section{padding-top:45px}.plan-heading h2{font-size:36px}.plan-heading{align-items:flex-start;flex-direction:column;gap:20px}.export-button{align-self:flex-start}.plan-toolbar{margin-top:25px}.stats{gap:15px}.stats span{font-size:11px}.stats b{font-size:14px}.week-view{display:none}.list-view.desktop-hidden{display:block}.view-switch{display:none}.list-day{grid-template-columns:1fr;gap:10px}.list-day h3{font-size:16px}.list-course{gap:14px}.list-code{display:none}.plan-bottom{flex-direction:column;font-size:11px}.list-room{max-width:120px}.before-index{display:none}.before-plan{margin-bottom:35px}.before-plan h2{font-size:21px}.before-plan p{font-size:13px;line-height:1.5}footer{padding:24px 5%;flex-direction:column;gap:15px}.elective-grid{grid-template-columns:1fr 1fr}.planning-note{font-size:12px}}
 @media(max-width:500px){.intro h1{font-size:43px}.intro .eyebrow{font-size:10px}.palette{display:none}.configurator{grid-template-columns:1fr}.config-section+.config-section{border-left:0;border-top:1px solid var(--line)}.config-section{padding:20px}.semester-section{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;align-items:center}.semester-section .step{margin:0;font-size:14px}.semester-options{gap:6px;margin:0}.semester-options button{height:45px;min-width:32px;font-size:23px}.semester-section .field-hint{grid-column:2;font-size:10px;margin:0}.program-section .step{margin-bottom:17px}.program-options button>span{font-size:11px}.program-options button{min-height:65px}.groups-section{display:block}.group-fields{gap:10px}.select-field{max-width:none}.groups-section .field-hint{font-size:11px}.generate-button{margin-top:20px;width:100%}.source-line{font-size:10px;gap:15px}.source-line>span{max-width:190px;line-height:1.6}.before-plan{margin-top:32px;padding:25px 0;gap:15px}.mini-week{width:56px;height:50px;flex-shrink:0;transform:scaleY(.8)}.before-plan h2{font-size:18px}.before-plan p{font-size:12px}.plan-heading h2{font-size:34px}.profile-summary{font-size:11px}.profile-summary>span+span:before{margin:0 7px}.stats{width:100%;justify-content:space-between;gap:8px}.stats>span{display:flex;flex-direction:column;gap:3px}.stats b{font-size:20px}.elective-grid{grid-template-columns:1fr}.elective-panel summary>span{gap:8px}.elective-panel summary{padding:15px;font-size:13px}.elective-panel .muted{font-size:10px}.list-course{padding:13px;gap:13px;flex-wrap:wrap}.list-time{font-size:13px}.list-course-main{min-width:180px}.list-course-main strong{font-size:15px}.list-course-main>span{font-size:11px}.list-room{max-width:none;padding-left:49px;font-size:11px;margin-top:-5px}.legend{gap:10px}.modal-inner{padding:28px 23px}.modal h2{font-size:33px}.date-fields{gap:9px}.date-fields input{font-size:13px;padding:7px}.toast{width:calc(100% - 30px)}.empty-plan{padding:30px 20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Functional first-semester view: no branding or decorative content. */
+.site-header{height:64px;font-size:14px;gap:20px}
+.intro{padding:34px 0 26px}
+h1{font-size:48px;letter-spacing:-.05em;font-weight:500}
+.intro-copy{font-size:16px;margin-top:12px;color:var(--muted)}
+.configurator{grid-template-columns:1fr 1fr}
+.config-section{padding:24px}
+.step{font-size:16px;margin-bottom:20px}
+.step>span,.field-hint{font-size:13px}
+.program-options{grid-template-columns:repeat(3,1fr)}
+.program-options button{padding:14px;min-height:96px}
+.program-options button>span{font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+.select-field{max-width:none}
+.select-field>span{font-size:14px;line-height:1.4;min-height:20px}
+.group-fields{gap:12px}
+.generate-button{font-size:14px}
+.source-line{font-size:12px}
+.initial-help{font-size:16px;color:var(--muted);padding:22px 0 28px;margin:0}
+.plan-section{padding-top:40px}
+.plan-heading h2{font-size:32px}
+.profile-summary{font-size:14px}
+.stats,.view-switch button{font-size:14px}
+.day-head strong{font-size:14px}
+.course-top,.course-room,.course-lecturer{font-size:12px}
+.course-block strong{font-size:16px;line-height:1.2}
+.plan-bottom{font-size:12px}
+.planning-note{font-size:14px}
+footer{font-size:12px}
+.modal h2{font-size:32px;letter-spacing:-.04em}
+.modal-intro{font-size:16px}
+.date-fields label{font-size:14px}
+.export-note,.fine-print{font-size:12px}
+.list-course-main>span,.list-room{font-size:13px}
+@media(max-width:1000px){
+ .program-options{grid-template-columns:1fr}
+ .program-options button{min-height:52px;flex-direction:row;align-items:center;gap:14px;padding:12px}
+ .program-options button>span{margin:0;padding-right:20px;font-size:14px;overflow-wrap:normal}
+ .program-options b{min-width:28px}
+ .select-field>span{min-height:40px}
+}
+@media(max-width:800px){
+ .site-header{height:auto;min-height:64px;padding:18px 5%;font-size:12px;flex-wrap:wrap;gap:8px 18px}
+ .configurator{grid-template-columns:1fr 1fr}
+ .groups-section{grid-column:auto;display:block;border-top:0;border-left:1px solid var(--line)!important}
+ .groups-section .step{margin-bottom:20px}
+ .generate-button{margin-top:22px}
+ .select-wrap select{font-size:18px;padding-left:10px}
+ .group-fields{gap:8px}
+ .select-field>span{font-size:12px}
+ .profile-summary{font-size:13px}
+ .list-course-main>span,.list-room{font-size:13px}
+ .stats>span{font-size:12px}
+ .planning-note{font-size:14px}
+}
+@media(max-width:650px){
+ .configurator{grid-template-columns:1fr}
+ .groups-section{border-left:0!important;border-top:1px solid var(--line)}
+ .config-section{padding:20px}
+ .program-options{grid-template-columns:repeat(3,1fr)}
+ .program-options button{min-height:95px;flex-direction:column;align-items:flex-start;gap:4px}
+ .program-options button>span{font-size:13px;line-height:1.35;padding:0;overflow-wrap:anywhere}
+ .select-field>span{font-size:13px;min-height:20px}
+ .intro h1{font-size:40px}
+ .intro{padding:28px 0 22px}
+ .initial-help{font-size:14px;line-height:1.6}
+ .source-line{font-size:12px;align-items:flex-start}
+ .plan-heading h2{font-size:30px}
+ .profile-summary{font-size:13px;line-height:1.5}
+ .list-course-main{min-width:150px}
+ .list-room{font-size:12px}
+ .source-line>span{max-width:190px}
+}
+@media(max-width:360px){
+ .program-options{grid-template-columns:1fr}
+ .program-options button{min-height:48px;flex-direction:row;align-items:center;gap:12px}
+ .program-options button>span{font-size:14px;overflow-wrap:normal;padding-right:15px}
+ .select-field>span{min-height:40px}
+}
+@media(max-width:650px){
+ .program-options{grid-template-columns:1fr}
+ .program-options button{min-height:52px;flex-direction:row;align-items:center;gap:14px}
+ .program-options button>span{font-size:14px;overflow-wrap:normal;padding-right:22px}
+ .select-field>span{font-size:13px}
+}

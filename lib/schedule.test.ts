@@ -73,3 +73,39 @@ test('explicit untimed dates export all-day events with exclusive next-day end',
   assert.match(text, /DTSTART;VALUE=DATE:20261102\r\nDTEND;VALUE=DATE:20261103/);
   assert.doesNotMatch(text, /DTSTART;TZID/);
 });
+
+test('first-semester catalog contains only KD, ID and FD mandatory courses', async () => {
+  const { courses } = await import('./courses');
+  const allowed = ['KD', 'ID', 'FD'];
+  assert.ok(courses.length > 0);
+  for (const item of courses) {
+    assert.deepEqual(item.semesters, [1]);
+    assert.ok(item.programs.length > 0 && item.programs.every(p => allowed.includes(p)));
+    assert.equal(Boolean(item.elective), false);
+    assert.ok(item.day >= 0 && item.day <= 4);
+    assert.ok(minutes(item.end) > minutes(item.start));
+  }
+  for (const program of ['KD', 'ID', 'FD'] as const) {
+    for (const xy of ['X', 'Y']) {
+      const numbers = xy === 'X' ? ['1', '2', '3'] : ['4', '5', '6'];
+      const letters = xy === 'X' ? ['C', 'D'] : ['A', 'B'];
+      for (const number of numbers) for (const letter of letters) {
+        const selected = courses.filter(c => matchesProfile(c, { semester: 1, program, xy, number, letter }));
+        assert.equal(selected.length, 9, `${program} ${xy}/${number}/${letter}`);
+        assert.deepEqual(conflicts(selected), [], `${program} ${xy}/${number}/${letter}`);
+      }
+    }
+  }
+});
+
+test('ID X/2/C export uses the verified Tuesday foundation end time', async () => {
+  const { courses } = await import('./courses');
+  const selected = courses.filter(c => matchesProfile(c, { semester: 1, program: 'ID', xy: 'X', number: '2', letter: 'C' }));
+  const foundation = selected.find(c => c.title === 'Gestaltungsgrundlagen');
+  assert.equal(foundation?.day, 1);
+  assert.equal(foundation?.start, '13:00');
+  assert.equal(foundation?.end, '16:15');
+  const calendar = unfold(buildCalendar(selected, { ...options, startDate: '2026-10-05' }));
+  assert.equal((calendar.match(/BEGIN:VEVENT/g) || []).length, 9);
+  assert.match(calendar, /DTEND;TZID=Europe\/Berlin:20261006T161500/);
+});
